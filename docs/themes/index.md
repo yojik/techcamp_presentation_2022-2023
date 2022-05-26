@@ -3,7 +3,7 @@ marp: true
 theme: gaia
 size: 16:9 
 paginate: true 
-footer: "2022TechCampテーマ発表 ES1-1 菅野 洋史"
+footer: "2022年度TechCampテーマ発表 ES1-1 菅野 洋史"
 style: |
     section.title * , h1{
         text-align: center;
@@ -27,7 +27,6 @@ ES1-1 菅野 洋史
 
 ## 前提
 
-<br/>
 
 ### 今回は複数テーマの技術調査・検証を行う
 
@@ -47,7 +46,7 @@ ES1-1 菅野 洋史
 - クラウドサービスにひも付きになるのではなく、手元のPCやスマホの能力を活かした技術を調査したい
 
 --- 
-### 2. 開発環境はクラウドにこだわりたい
+### 2. 開発環境はクラウドにこだわる
 
 - 昨年までと同様にGitpodでの開発を行う
 - いつでも、どこでもプロジェクトにアクセスし作業したい
@@ -79,11 +78,11 @@ ES1-1 菅野 洋史
 
 ### 概要
 
-ブラウザでIoT
+ブラウザでIoTがどこまでやれるか?
 
-- WebBluetoothを利用してブラウザから外部機器にアクセスする仕組みを作る。
+- WebBluetoothを利用してブラウザから外部機器にアクセスする仕組み
 - その他 ブラウザからアクセスできるデバイス系API調査
-  - navigater.getUserMedia())
+  - navigator.mediaDevices.getUserMedia() // カメラやマイクへのアクセス
   - Geolocation API
   - etc..
   
@@ -105,7 +104,7 @@ ml5.js(Tensorflow.jsラッパ)を使ったサンプル作成。機械学習を�
 
 ### 技術要素と探求ポイント
 
-- 結構苦手分野なので、習作として何かを作ります
+- 結構苦手分野なので、習作として何かを作る
 - テーマ2との連携など
 - Tensorflow.js
 - ml5.js(上記のラッパ)
