@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "marp": "marp",
-    "http": "http-server"
+    "marp": "marp docs",
+    "serve": "http-server  ./docs"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^1.7.2",
