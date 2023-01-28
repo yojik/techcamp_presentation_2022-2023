@@ -90,7 +90,7 @@ AWS等を使うと
 
 - Astro.js(静的サイトジェネレータ)を利用してWebサイト作成
 - WebBluetooth でM5Stackにアクセスし相互の情報交換する
-- M5StackのプログラミングはUIFloで実装
+- M5StackのプログラミングはUIFlowで実装
 - 
 --- 
 
@@ -104,8 +104,22 @@ AWS等を使うと
 
 お遊び程度
 - Colaboratory でStable Diffusion による画像生成は実施  
-- ChatGPT(というよりもOpenGPT-3.5)
+- ChatGPT(というよりもOpenAI)クライアントをdenoで作成
+- ChatGPTと外部リソースを組み合わせるLangChainを試してみる
 - 
+--- 
+
+# LangChain 
+
+- OpenAIは本質的に文字列のパターンから、ありそうな返答を作るだけなので意外と嘘つき
+- LangChainではOpanAIに質問した回答を他のシステムに流し込み、正しい結果を得たりすることができる
+- 名前のとおり、質疑の流し込みを何段も積み重ねることができる
+
+# サンプル
+
+日本語の質問をOpenAIに流し込んで、Pythonに変換し、、その処理結果を取得する。
+
+
 
 ---
 # 全体
