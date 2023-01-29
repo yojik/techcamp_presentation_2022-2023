@@ -10,33 +10,43 @@ var characteristic;
 
 async function connect() {
     const device = await navigator.bluetooth.requestDevice({
-        filters: [{ namePrefix: 'M5' }],
+        filters: [{ namePrefix: 'M5Core2' }],
         optionalServices: [UUID_1, UUID_2, UUID_3]
     })
     device.gatt.connect();
+
 
     const server = await device.gatt.connect();
     console.log("Getting Service...");
     const service = await server.getPrimaryService(UUID_1)
 
     // 読み込み用
-    const characteristic = await service.getCharacteristic(UUID_3)
-    characteristic.startNotifications()
+    const readCharacteristic = await service.getCharacteristic(UUID_3)
+    readCharacteristic.startNotifications()
+    readCharacteristic.addEventListener(
+        "characteristicvaluechanged",
+        handler
+    );
+
+    // 書き込み用
+    const wtireCharacteristic = await service.getCharacteristic(UUID_3)
+
 
 }
 
 function handler(event) {
-    console.log("TEST")
     const value = event.target.value
     // // データがStringの場合
-    // const decoder = new TextDecoder('utf-8')
-    // const str = decoder.decode(value)
-    // console.log(str)
+    const decoder = new TextDecoder('utf-8')
+    const str = decoder.decode(value)
+    const data = JSON.parse(str)
+    console.log(data)
+    document.querySelector('#pitch').textContent = data.pitch
+    document.querySelector('#rolling').textContent = data.rolling
 
-    // // データがnumberの場合
-    // const num = getUintN(value)
-    // console.log(num)
 }
 
 
 document.querySelector('#connect').addEventListener("click", connect)
+
+

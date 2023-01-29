@@ -8,8 +8,21 @@ import Layout from "../layouts/Layout.astro";
 </script>
 <Layout title="M5Stack">
   <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
+    <h1>M5StackCore2... <span id="connectStatus" class="text-gradient"></span></h1>
 
     <button id="connect">接続</button>
+
+    <table>
+      <thead>
+        <tr>
+          <td>ピッチ</td>
+          <td>ロール</td>
+        </tr>
+      </thead>
+      <tr>
+        <td id="pitch"></td>
+        <td id="rolling"> </td>
+      </tr>
+    </table>
   </main>
 </Layout>
