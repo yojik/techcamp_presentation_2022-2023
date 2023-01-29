@@ -91,19 +91,21 @@ AWS等を使うと
 - Astro.js(静的サイトジェネレータ)を利用してWebサイト作成
 - WebBluetooth でM5Stackにアクセスし相互の情報交換する
 - M5StackのプログラミングはUIFlowで実装
-- 
 --- 
 
-
+### 接続
 
 ![接続](./img/conect.png)
 
 
 ---
-# M5Stackのジャイロデータをリアルタイムに表示
+### M5Stackのジャイロデータをリアルタイムに表示
 
 ![表示](./img/data.png)
 
+### UIFlowプログラム
+
+![screen](./img/UIFlow.png)
 ---
 # テーマ3: ブラウザで機械学習
 
