@@ -1,6 +1,5 @@
 ---
-title: Hello, World
-layout: ../layouts/Layout.astro
+title: 2022年度 テックキャンプ報告
 marp: true
 
 ---
@@ -32,7 +31,7 @@ ES1-1 菅野 洋史
 ブラウザで動く技術にこだわる
 
 ---
-# VR/ARプレゼンツール
+# テーマ1: VR/ARプレゼンツール
 
 ## 停止中
 
@@ -71,10 +70,13 @@ AWS等を使うと
 ---
 # 手軽にIoTを試したい
 
-## クラウドを否定するわけではないが、、、
-## 手元のある機器と簡単につないでIoTプロトタイピングしたい
+- クラウドを否定するわけではないが、、、
+- 手元のある機器と簡単につないでIoTプロトタイピングしたい
 
-### -> Web Bluetooth の利用
+<br>
+<vr>
+
+# -> Web Bluetooth の利用
 
 ---
 
@@ -89,23 +91,27 @@ AWS等を使うと
 # 構成要素
 
 - Astro.js(静的サイトジェネレータ)を利用してWebサイト作成
-- WebBluetooth でM5Stackにアクセスし相互の情報交換する
+- WebBluetooth でM5Stackにアクセスし,情報交換する
 - M5StackのプログラミングはUIFlowで実装
 --- 
 
 ### 接続
 
-![接続](./img/conect.png)
+![height:400](../../public/img/conect.png)
+
+
 
 
 ---
 ### M5Stackのジャイロデータをリアルタイムに表示
 
-![表示](./img/data.png)
+![height:400](../../public/img/data.png)
 
+---
 ### UIFlowプログラム
 
-![screen](./img/UIFlow.png)
+![height:400](./../public/img/UIFlow.png)
+
 ---
 # テーマ3: ブラウザで機械学習
 
@@ -124,17 +130,77 @@ AWS等を使うと
 - また名前のとおり、質疑の流し込みを何段も積み重ねることができる
 
 
+---
 # サンプル
 
-日本語の質問をOpenAIに流し込んで、Pythonに変換し、、その処理結果を取得する。
+日本語の質問をOpenAIに流し込んで、Pythonに変換し、その処理結果を取得する。
+
+```
+# LLMの準備
+llm = OpenAI(temperature=0.9)
+
+# 数式eval
+llm_math_chain = LLMMathChain(llm=llm, verbose=True)
+
+# 計算をおこなうツール
+# 計算を行うような文書パターンが出てきたらこちらで代行する
+tools = [
+    Tool(
+        name="Calculator",
+        func=llm_math_chain.run,
+        description="useful for when you need to answer questions about math"
+    )
+]
+llm = OpenAI(temperature=0)
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+```
 
 ---
 # 普通のOpenAIなら
 
 
+```
+print(llm("1000円をもって買い物にでかけました。450円の本を買い、135円のジュースを2本買いました。おつりはいくらですか"))
+```
+
+<br>
+
+## 自信たっぷり間違える
+```
+残りは425円です。
+```
 ---
 # LangChainなら
 
-質問から数式を組み立てるところまではOpenAIの言語モデルを使い、その式をPythonで実行して「正しい答え」を導く
+質問から数式を組み立てるところまではOpenAIの言語モデルを使い、その式をPythonで実行する
 
----
+--- 
+# 結局間違っている！！！！！
+
+
+計算しようとして間違えてる心意気は伝わる。。
+
+
+```
+agent.run("1000円をもって買い物にでかけました。450円の本を買い、135円のジュースを2本買いました。残りはいくらですか")
+```
+
+```
+> Entering new AgentExecutor chain...
+ I need to calculate how much money is left
+Action: Calculator
+Action Input: 1000 - 450 - (135 * 2)   
+
+> Entering new LLMMathChain chain...
+1000 - 450 - (135 * 2)  # ここまでやれてるのに。。
+Answer: 220       # 結局間違える。。
+> Finished chain.
+
+Observation: Answer: 220
+Thought: I now know the final answer
+Final Answer: 残りは220円です。
+
+> Finished chain.
+残りは220円です。
+```
+
